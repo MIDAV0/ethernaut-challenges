@@ -1,13 +1,12 @@
-# Sample Hardhat Project
+# Ethernaut Challenges
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Sollutions to the [Ethernaut](https://ethernaut.openzeppelin.com/) challenges.
 
-Try running some of the following tasks:
+## Level 1 - Fallback
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
+The contract has a fallback function that is called when the contract receives ether without any data. The function sets message sender as the owner of the contract.
+
+## Level 2 - Fallout
+
+The constructor of the contract is declared as function and can be called by anyone. The function sets the owner of the contract to the caller and gives the caller permissions to withdraw funds from the contract.
+
