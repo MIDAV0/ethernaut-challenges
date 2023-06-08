@@ -10,3 +10,6 @@ The contract has a fallback function that is called when the contract receives e
 
 The constructor of the contract is declared as function and can be called by anyone. The function sets the owner of the contract to the caller and gives the caller permissions to withdraw funds from the contract.
 
+## Level 3 - Coin Flip
+
+The contract uses a blockhash to determine the outcome of a coin flip. The outcome of the coin flip can be calculated by other contract in the same block and used to win the game.
