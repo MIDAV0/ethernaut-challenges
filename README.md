@@ -13,3 +13,7 @@ The constructor of the contract is declared as function and can be called by any
 ## Level 3 - Coin Flip
 
 The contract uses a blockhash to determine the outcome of a coin flip. The outcome of the coin flip can be calculated by other contract in the same block and used to win the game.
+
+## Level 4 - Telephone
+
+The contract uses `tx.origin` to determine the caller of the contract. The contract can be called by another contract to change ownership.
