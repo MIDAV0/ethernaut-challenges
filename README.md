@@ -17,3 +17,7 @@ The contract uses a blockhash to determine the outcome of a coin flip. The outco
 ## Level 4 - Telephone
 
 The contract uses `tx.origin` to determine the caller of the contract. The contract can be called by another contract to change ownership.
+
+## Level 5 - Token
+
+The contract has an integer underflow vulnerability. The `transfer` function can be called with amount bigger than the balance of the caller, when the balance is substracted from bigger value it will cause an underflow and pass required checks and give the caller more tokens than they should have.
