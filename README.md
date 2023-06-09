@@ -21,3 +21,8 @@ The contract uses `tx.origin` to determine the caller of the contract. The contr
 ## Level 5 - Token
 
 The contract has an integer underflow vulnerability. The `transfer` function can be called with amount bigger than the balance of the caller, when the balance is substracted from bigger value it will cause an underflow and pass required checks and give the caller more tokens than they should have.
+
+## Level 6 - Delegation
+
+The contract uses delegatecall to call the implementation contract. We should use delegate call in Delegation contract to call pwn function in Delegate contract. This will change the state of the Delegation contract (because delegatecall uses storage of the Delegation contract). To do so we just send a transaction to the Delegation contract with data of the pwn function `{ "data": "0xdd365b8b" }`.
+In web console `contract.sendTransaction({data: "0xdd365b8b"})`
