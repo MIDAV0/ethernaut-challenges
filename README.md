@@ -26,3 +26,7 @@ The contract has an integer underflow vulnerability. The `transfer` function can
 
 The contract uses delegatecall to call the implementation contract. We should use delegate call in Delegation contract to call pwn function in Delegate contract. This will change the state of the Delegation contract (because delegatecall uses storage of the Delegation contract). To do so we just send a transaction to the Delegation contract with data of the pwn function `{ "data": "0xdd365b8b" }`.
 In web console `contract.sendTransaction({data: "0xdd365b8b"})`
+
+## Level 7 - Force
+
+The contract is vulnarable to forcing eth by destroing other contract. We can create attack contract deposit some funds to it and call `selfdestruct` with address of the Force contract. This will destroy the attacker contract and send all funds to the Force contract.
