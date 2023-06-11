@@ -30,3 +30,6 @@ In web console `contract.sendTransaction({data: "0xdd365b8b"})`
 ## Level 7 - Force
 
 The contract is vulnarable to forcing eth by destroing other contract. We can create attack contract deposit some funds to it and call `selfdestruct` with address of the Force contract. This will destroy the attacker contract and send all funds to the Force contract.
+
+## Level 8 - Vault
+The contract has a `password` argument in it's storage at slot number 1. It's publickly accessible and can be vied by calling provider `provider.getStorageAt(contractAddress, 1)`. The retrieved password can be used to call `unlock` function and win the game.
