@@ -36,3 +36,7 @@ The contract has a `password` argument in it's storage at slot number 1. It's pu
 
 ## Level 9 - King
 The contract can be exploited by using failed fallback function. When someone tries to claim king status they trigger the `trasnfer` function which sends ETH to specified address. We can create a contract that will revert the transaction and make the `transfer` function fail. This will cause the rest of the transaction to fail and no one will be able to claim the king status.
+
+## Level 10 - Reentrancy
+
+The contract is vulnaruble to reentrancy attack. The `withdraw` function first sends ETH to the caller and then updates the balance of the caller. This allows the caller to call the `withdraw` function again before the balance is updated. The caller can call the `withdraw` function multiple times and drain the contract.
