@@ -33,3 +33,6 @@ The contract is vulnarable to forcing eth by destroing other contract. We can cr
 
 ## Level 8 - Vault
 The contract has a `password` argument in it's storage at slot number 1. It's publickly accessible and can be vied by calling provider `provider.getStorageAt(contractAddress, 1)`. The retrieved password can be used to call `unlock` function and win the game.
+
+## Level 9 - King
+The contract can be exploited by using failed fallback function. When someone tries to claim king status they trigger the `trasnfer` function which sends ETH to specified address. We can create a contract that will revert the transaction and make the `transfer` function fail. This will cause the rest of the transaction to fail and no one will be able to claim the king status.
