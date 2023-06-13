@@ -44,3 +44,5 @@ The contract is vulnaruble to reentrancy attack. The `withdraw` function first s
 ## Level 11 - Elevator
 
 The contract has a loophole in the `goTo` function. It calls the `isLastFloor` two times and first time it has to return `false` and second time `true`. We can create an attack contract that implements `Building` interface and will be atteched to in `Elevator`. In the attack contract we will keep track of the number of times `isLastFloor` was called and return `false` the first time and `true` the second time. This will allow us to call `goTo` function and win the game.
+
+Prevention: You can use the `view` function modifier on an interface in order to prevent state modifications. The `pure` modifier also prevents functions from modifying the state. Make sure you read Solidity's documentation and learn its caveats.
