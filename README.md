@@ -46,3 +46,12 @@ The contract is vulnaruble to reentrancy attack. The `withdraw` function first s
 The contract has a loophole in the `goTo` function. It calls the `isLastFloor` two times and first time it has to return `false` and second time `true`. We can create an attack contract that implements `Building` interface and will be atteched to in `Elevator`. In the attack contract we will keep track of the number of times `isLastFloor` was called and return `false` the first time and `true` the second time. This will allow us to call `goTo` function and win the game.
 
 Prevention: You can use the `view` function modifier on an interface in order to prevent state modifications. The `pure` modifier also prevents functions from modifying the state. Make sure you read Solidity's documentation and learn its caveats.
+
+## Level 12 - Privacy
+
+We simply need to parse the contract's storage. 
+First slot (0) is occupied by bool.
+Second one by uint256.
+Third one fits 3 variables uint8, uint8 and uint16.
+Slots 4,5,6 store array of 3 bytes32 variables.
+Our target slot is 6 (5) it stores data[2]. It store bytes32 `0xb22f7b012794b7d09bfc5c7d048c9ab84458489122521730f71eb9ffd7d992a1` which we should cast to bytes16 and get first half of this variable `0xb22f7b012794b7d09bfc5c7d048c9ab8`. This is the key we need to call `unlock` function and win the game.
