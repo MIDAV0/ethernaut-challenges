@@ -40,3 +40,7 @@ The contract can be exploited by using failed fallback function. When someone tr
 ## Level 10 - Reentrancy
 
 The contract is vulnaruble to reentrancy attack. The `withdraw` function first sends ETH to the caller and then updates the balance of the caller. This allows the caller to call the `withdraw` function again before the balance is updated. The caller can call the `withdraw` function multiple times and drain the contract.
+
+## Level 11 - Elevator
+
+The contract has a loophole in the `goTo` function. It calls the `isLastFloor` two times and first time it has to return `false` and second time `true`. We can create an attack contract that implements `Building` interface and will be atteched to in `Elevator`. In the attack contract we will keep track of the number of times `isLastFloor` was called and return `false` the first time and `true` the second time. This will allow us to call `goTo` function and win the game.
