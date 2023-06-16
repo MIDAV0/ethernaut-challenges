@@ -55,3 +55,8 @@ Second one by uint256.
 Third one fits 3 variables uint8, uint8 and uint16.
 Slots 4,5,6 store array of 3 bytes32 variables.
 Our target slot is 6 (5) it stores data[2]. It store bytes32 `0xb22f7b012794b7d09bfc5c7d048c9ab84458489122521730f71eb9ffd7d992a1` which we should cast to bytes16 and get first half of this variable `0xb22f7b012794b7d09bfc5c7d048c9ab8`. This is the key we need to call `unlock` function and win the game.
+
+
+## Level 21 - Shop
+
+The contract can be exploited the same way as the `Elevator` level. We call the same function twice, but first time it should return value >= 100 and second time < 100. Because function has `view` modifier we cannot change state of the contract to keep track of number of calls to this function. Luckily we can use the state variable `isSold` in `Shop` contract to keep track of the number of calls as it changes from `false` to `true` between first and second call of the `price` function. When `isSold` is `false` we return `100` and when it's `true` we return `0`. This will allow us to call `buy` function and win the game.
